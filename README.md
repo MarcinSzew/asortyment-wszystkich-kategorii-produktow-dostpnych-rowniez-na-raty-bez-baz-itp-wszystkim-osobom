@@ -1,0 +1,2 @@
+# Leasing-lub-Kredyt-inwestycyjny-lub-Kredyt-kupiecki-na-zaoferowane-indywidualnie-oferty
+Leasing lub Kredyt inwestycyjny lub Kredyt kupiecki bez baz, zaświadczeń itp na zaoferowane przez właściciela Marcina Szewczyka indywidualnie opracowane oferty finansowo-sprzedażowe.     Opisz proszę kurtki swoje finansowo-zakupowe oczekiwania a z pewnością się dogadamy korzystając z dołączonego adresu e-mail agencji a ktoś od nas się odezwie 
