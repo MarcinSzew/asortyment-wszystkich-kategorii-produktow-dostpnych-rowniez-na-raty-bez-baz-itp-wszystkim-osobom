@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globalna Platforma Zakupów Hurtowych</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#ff6a00;color:white;padding:20px;text-align:center}
+.container{max-width:1300px;margin:auto;padding:20px}
+section{background:white;margin-top:20px;padding:25px;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{border:1px solid #ddd;border-radius:8px;padding:15px;background:#fafafa}
+.category{cursor:pointer}
+.sub{display:none;margin-top:10px}
+.search{padding:10px;width:100%;margin-bottom:20px;font-size:16px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.product{border:1px solid #ddd;border-radius:8px;padding:12px;background:white}
+footer{text-align:center;padding:25px;background:#222;color:white;margin-top:40px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Platforma Zakupów Hurtowych</h1>
+<p>Najniższe ceny • Darmowa dostawa BIO • Bezpieczne transakcje</p>
+</header>
+
+<div class="container">
+
+<section>
+<h2>Usługi finansowe</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Finansowanie zamówień</h3>
+<ul>
+<li>Prowizja: 2%</li>
+<li>Minimalna kwota: 1000 €</li>
+<li>Finansowanie do 60 dni</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Płatność odroczona</h3>
+<ul>
+<li>Koszt: 1.5%</li>
+<li>Termin: 30 dni</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Ochrona kupującego</h3>
+<ul>
+<li>Koszt: 0.8%</li>
+<li>Zwrot środków przy sporze</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Korzyści zakupów</h2>
+<ul>
+<li>Najniższe ceny hurtowe</li>
+<li>Dostęp do globalnych producentów</li>
+<li>Darmowa dostawa BIO (najtańsza metoda)</li>
+<li>Bezpieczne płatności</li>
+<li>Wsparcie importowe</li>
+</ul>
+</section>
+
+<section>
+<h2>Wyszukiwarka produktów</h2>
+<input class="search" id="search" placeholder="Szukaj produktów lub kategorii...">
+<div id="products" class="product-grid"></div>
+</section>
+
+<section>
+<h2>Kategorie produktów</h2>
+<div class="grid" id="categories">
+
+<div class="card category">
+<h3>Elektronika użytkowa</h3>
+<div class="sub">
+<ul>
+<li>Smartfony</li>
+<li>Słuchawki</li>
+<li>Tablety</li>
+<li>Smartwatch</li>
+<li>Kamery</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Moda i odzież</h3>
+<div class="sub">
+<ul>
+<li>Odzież damska</li>
+<li>Odzież męska</li>
+<li>Odzież sportowa</li>
+<li>Bielizna</li>
+<li>Kurtki</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Motoryzacja</h3>
+<div class="sub">
+<ul>
+<li>Części samochodowe</li>
+<li>Motocykle</li>
+<li>Akcesoria samochodowe</li>
+<li>Pojazdy elektryczne</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Dom i ogród</h3>
+<div class="sub">
+<ul>
+<li>Meble</li>
+<li>Oświetlenie</li>
+<li>Dekoracje</li>
+<li>Narzędzia ogrodowe</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Maszyny przemysłowe</h3>
+<div class="sub">
+<ul>
+<li>Maszyny CNC</li>
+<li>Maszyny pakujące</li>
+<li>Roboty przemysłowe</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Zdrowie i medycyna</h3>
+<div class="sub">
+<ul>
+<li>Sprzęt medyczny</li>
+<li>Suplementy</li>
+<li>Diagnostyka</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Sport i rekreacja</h3>
+<div class="sub">
+<ul>
+<li>Sprzęt fitness</li>
+<li>Rowery</li>
+<li>Sprzęt outdoor</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Zabawki i hobby</h3>
+<div class="sub">
+<ul>
+<li>Zabawki edukacyjne</li>
+<li>Modele RC</li>
+<li>Gry planszowe</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Biuro i szkoła</h3>
+<div class="sub">
+<ul>
+<li>Drukarki</li>
+<li>Materiały biurowe</li>
+<li>Artykuły szkolne</li>
+</ul>
+</div>
+</div>
+
+<div class="card category">
+<h3>Energia i ekologia</h3>
+<div class="sub">
+<ul>
+<li>Panele solarne</li>
+<li>Magazyny energii</li>
+<li>Systemy recyklingu</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+</div>
+
+<footer>
+<p>© 2026 Platforma Zakupów Hurtowych</p>
+</footer>
+
+<script>
+
+const categories=document.querySelectorAll('.category');
+
+categories.forEach(cat=>{
+cat.addEventListener('click',()=>{
+const sub=cat.querySelector('.sub');
+sub.style.display=sub.style.display==='block'?'none':'block';
+});
+});
+
+const products=[
+{name:'Smartfon X',cat:'Elektronika'},
+{name:'Słuchawki Bluetooth',cat:'Elektronika'},
+{name:'Kurtka zimowa',cat:'Moda'},
+{name:'Rower górski',cat:'Sport'},
+{name:'Drukarka laserowa',cat:'Biuro'},
+{name:'Panel solarny',cat:'Energia'},
+{name:'Maszyna CNC',cat:'Maszyny'}
+];
+
+const container=document.getElementById('products');
+
+function render(list){
+container.innerHTML='';
+list.forEach(p=>{
+const div=document.createElement('div');
+div.className='product';
+div.innerHTML=`<strong>${p.name}</strong><br><small>${p.cat}</small>`;
+container.appendChild(div);
+});
+}
+
+render(products);
+
+const search=document.getElementById('search');
+
+search.addEventListener('input',()=>{
+const val=search.value.toLowerCase();
+const filtered=products.filter(p=>p.name.toLowerCase().includes(val)||p.cat.toLowerCase().includes(val));
+render(filtered);
+});
+
+</script>
+
+</body>
+</html>
