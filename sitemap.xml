@@ -4,20 +4,27 @@
 
 <url>
 <loc>https://twojadomena.com/</loc>
-<lastmod>2026-03-10</lastmod>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>https://twojadomena.com/kategorie</loc>
-<lastmod>2026-03-10</lastmod>
-<priority>0.9</priority>
+<loc>https://twojadomena.com/dj-equipment</loc>
 </url>
 
 <url>
-<loc>https://twojadomena.com/produkty</loc>
-<lastmod>2026-03-10</lastmod>
-<priority>0.8</priority>
+<loc>https://twojadomena.com/gaming</loc>
+</url>
+
+<url>
+<loc>https://twojadomena.com/music-equipment</loc>
+</url>
+
+<url>
+<loc>https://twojadomena.com/video</loc>
+</url>
+
+<url>
+<loc>https://twojadomena.com/lighting</loc>
 </url>
 
 </urlset>
