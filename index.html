@@ -3,30 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Najwyższej jako 1-ej klasy profesjonalne zarazem luksusowe oferty handlowe dostępne również na raty bez baz itp weryfikacji finansowych</title>
-<meta name="description" content="Oferty Premium dostępne również na raty. Możliwość pełnej edycji i dodawania własnych produktów.">
-
+<title>Najwyższej jako 1‑ej klasy profesjonalne luksusowe oferty handlowe dostępne również na raty</title>
 <style>
-body { font-family: Arial; margin:0; background:#f2f2f2;}
-header { background:#003366; color:white; padding:30px; text-align:center;}
-main { max-width:1200px; margin:auto; padding:20px;}
-section { background:white; padding:20px; margin-bottom:25px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.15);}
-input, textarea, select { width:100%; padding:8px; margin:6px 0 12px 0;}
-button { background:#003366; color:white; border:none; padding:10px 16px; cursor:pointer;}
-.product { border-top:1px solid #ddd; padding-top:15px; margin-top:15px;}
-.calc { background:#f9f9f9; padding:10px; margin-top:10px; border-radius:5px; }
-footer { background:#003366; color:white; text-align:center; padding:25px; margin-top:30px;}
+body { font-family:Arial; margin:0; background:#f2f2f2;}
+header { background:#003366; color:white; padding:20px; text-align:center;}
+main { padding:20px; }
+section { background:white; padding:15px; margin:15px 0; border-radius:6px;}
+input, select { width:100%; padding:8px; margin:6px 0; }
+button { background:#003366; color:white; border:none; padding:10px; cursor:pointer;}
+.product { border-top:1px solid #ccc; padding-top:15px; margin-top:15px;}
+.calc { background:#f9f9f9; padding:10px; margin-top:10px; border-radius:5px;}
 </style>
 </head>
 <body>
+
 <header>
-<h1>Najwyższej jako 1-ej klasy profesjonalne zarazem luksusowe oferty handlowe dostępne również na raty bez baz itp weryfikacji finansowych</h1>
+<h1>Najwyższej klasy profesjonalne i luksusowe oferty handlowe</h1>
+<p>dostępne również na raty bez baz itp. weryfikacji finansowych</p>
+<button onclick="showPremium()">Premium</button>
+<button onclick="showAll()">Wszystkie</button>
 </header>
 
 <main>
+
 <section>
-<h2>Wyszukiwarka ofert Premium</h2>
-<input id="search" placeholder="Wpisz krótki opis produktu..." onkeyup="searchOffer()">
+<h2>Wyszukiwarka ofert</h2>
+<input id="search" placeholder="Szukaj po nazwie lub opisie..." onkeyup="searchOffer()">
 </section>
 
 <section>
@@ -37,93 +39,93 @@ footer { background:#003366; color:white; text-align:center; padding:25px; margi
 </section>
 
 <section>
-<h2>Oferty Premium</h2>
+<h2>Oferty</h2>
 <div id="offers"></div>
 </section>
 
 </main>
 
 <footer>
-<h3>Kontakt</h3>
-<p>Marcin Szewczyk</p>
-<p>profesja.premium@gmail.com</p>
-<p>+48 886 636 981</p>
+<p>Kontakt: Marcin Szewczyk</p>
+<p>Email: profesja.premium@gmail.com | Tel: +48 886 636 981</p>
 </footer>
 
 <script>
-// 37 kategorii
-const categories=[
-"Elektronika","Maszyny przemysłowe","Maszyny budowlane","Maszyny rolnicze","Motoryzacja","Narzędzia","Dom i ogród",
-"Wyposażenie biura","Wyposażenie sklepów","Meble","Oświetlenie","Sprzęt sportowy","Artykuły dziecięce","Zabawki",
-"Odzież i akcesoria","Biżuteria","Torby i walizki","Kosmetyki","Produkty zdrowotne","Artykuły gospodarstwa domowego",
-"Sprzęt AGD","Produkty ogrodowe","Materiały budowlane","Chemia przemysłowa","Surowce","Materiały tekstylne",
-"Opakowania","Produkty spożywcze","Sprzęt gastronomiczny","Systemy bezpieczeństwa","Transport i logistyka",
-"Urządzenia testowe","Usługi produkcyjne","Motoryzacja sportowa","Elektronika luksusowa","Moda luksusowa",
-"Wyposażenie hotelowe","Sprzęt fitness"
-];
-
-const filterSelect=document.getElementById("filterCategory");
-categories.forEach(c=>{
-let option=document.createElement("option"); option.text=c; option.value=c; filterSelect.add(option);
-});
-
 let offers=[];
 
 // wczytaj JSON
 fetch("offers.json")
-.then(resp=>resp.json())
-.then(data=>{offers=data; renderOffers();});
+  .then(r => r.json())
+  .then(data => {
+    offers = data;
+    setupCategories();
+    renderOffers();
+  });
 
-function renderOffers(){
-const container=document.getElementById("offers");
-container.innerHTML="";
-offers.forEach((o,index)=>{
-let div=document.createElement("div"); div.className="product"; div.setAttribute("data-category",o.category);
-div.innerHTML=`
-<h3>${o.title}</h3>
-<p><b>Kategoria:</b> ${o.category}</p>
-${o.image?`<img src="${o.image}" width="300">`:""}
-<br><br>
-${o.video?`<video width="300" controls><source src="${o.video}" type="video/mp4"></video>`:""}
-<p><b>Opis:</b> ${o.desc}</p>
-<p><b>Parametry:</b> ${o.params}</p>
-<p><b>Cena rynkowa:</b> ${o.price} PLN</p>
-<p><b>Kwota finansowania:</b> ${o.finance} PLN</p>
-<p><b>Cena hurtowa:</b> ${(o.price*0.7755).toFixed(2)} PLN</p>
-<p><b>Cena detaliczna:</b> ${(o.price*0.84).toFixed(2)} PLN</p>
-
-<div class="calc">
-<label>Kwota do sfinansowania (PLN):</label>
-<input type="number" id="financeInput${index}" value="${o.finance}" oninput="calcPayment(${index})">
-<p id="calcResult${index}">Rata orientacyjna: ${(o.finance/12).toFixed(2)} PLN / mies.</p>
-</div>
-`;
-container.appendChild(div);
-});
+// dodaj kategorie do filtra
+function setupCategories(){
+  const cats = [...new Set(offers.map(o=>o.category))];
+  let sel = document.getElementById("filterCategory");
+  cats.forEach(c=>{
+    let opt = document.createElement("option");
+    opt.value=c; opt.text=c;
+    sel.add(opt);
+  });
 }
 
-function calcPayment(index){
-let val=document.getElementById("financeInput"+index).value;
-document.getElementById("calcResult"+index).innerText="Rata orientacyjna: "+(val/12).toFixed(2)+" PLN / mies.";
+function renderOffers(filtered){
+  const container=document.getElementById("offers");
+  container.innerHTML = "";
+  (filtered || offers).forEach((o,i)=>{
+    let div=document.createElement("div");
+    div.className="product";
+    div.innerHTML=`
+      <h3>${o.title}</h3>
+      <p><b>Kategoria:</b> ${o.category}</p>
+      ${o.image?`<img src="${o.image}" width="300"><br><br>`:""}
+      ${o.video?`<video width="300" controls><source src="${o.video}" type="video/mp4"></video><br><br>`:""}
+      <p><b>Opis:</b> ${o.desc}</p>
+      <p><b>Parametry:</b> ${o.params}</p>
+      <p><b>Cena rynkowa:</b> ${o.price} PLN</p>
+      <p><b>Kwota finansowania:</b> ${o.finance} PLN</p>
+      <p><b>Cena hurtowa:</b> ${(o.price*0.7755).toFixed(2)} PLN</p>
+      <p><b>Cena detaliczna:</b> ${(o.price*0.84).toFixed(2)} PLN</p>
+
+      <div class="calc">
+        <label>Kwota do sfinansowania:</label>
+        <input type="number" id="fin${i}" value="${o.finance}" oninput="calcRate(${i})">
+        <p id="rate${i}">Rata orientacyjna: ${(o.finance/12).toFixed(2)} PLN / mies.</p>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function calcRate(i){
+  let val = document.getElementById("fin"+i).value;
+  document.getElementById("rate"+i).innerText = "Rata orientacyjna: "+(val/12).toFixed(2)+" PLN / mies.";
 }
 
 function searchOffer(){
-let input=document.getElementById("search").value.toLowerCase();
-let products=document.getElementsByClassName("product");
-for(let i=0;i<products.length;i++){
-let text=products[i].innerText.toLowerCase();
-products[i].style.display=text.includes(input)?"block":"none";
-}
+  let q=document.getElementById("search").value.toLowerCase();
+  renderOffers( offers.filter(o => 
+    o.title.toLowerCase().includes(q) || o.desc.toLowerCase().includes(q)
+  ));
 }
 
 function filterOffer(){
-let category=document.getElementById("filterCategory").value;
-let products=document.getElementsByClassName("product");
-for(let i=0;i<products.length;i++){
-let cat=products[i].getAttribute("data-category");
-products[i].style.display=(category==="all"||cat===category)?"block":"none";
+  let c=document.getElementById("filterCategory").value;
+  renderOffers( c==="all" ? offers : offers.filter(o=>o.category===c) );
 }
+
+// Premium tylko
+function showPremium(){
+  renderOffers(offers.filter(o=>o.premium));
+}
+function showAll(){
+  renderOffers();
 }
 </script>
+
 </body>
 </html>
