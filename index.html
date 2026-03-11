@@ -1,100 +1,28 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oferty finansowo‑sprzedażowe</title>
-<meta name="description" content="Leasing, kredyt inwestycyjny i kredyt kupiecki. Sprzedaż produktów z możliwością finansowania.">
-
+<title>Oferty finansowo‑sprzedażowe Premium</title>
+<meta name="description" content="Ekskluzywne oferty produktów premium i luksusowych z możliwością finansowania: leasing, kredyt inwestycyjny, kredyt kupiecki.">
 <style>
-body { font-family: Arial; margin: 0; background: #f2f2f2; }
-header { background: #003366; color: white; padding: 30px; text-align: center; }
-main { max-width: 1100px; margin: auto; padding: 20px; }
-section { background: white; padding: 20px; margin-bottom: 25px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);}
-input, textarea, select { width: 100%; padding: 8px; margin: 6px 0 12px 0; }
-button { background: #003366; color: white; border: none; padding: 10px 16px; cursor: pointer; }
-.product { border-top: 1px solid #ddd; padding-top: 15px; margin-top: 15px; }
-footer { background: #003366; color: white; text-align: center; padding: 25px; margin-top: 30px; }
+body { font-family: Arial; margin:0; background:#f2f2f2;}
+header { background:#003366; color:white; padding:30px; text-align:center;}
+main { max-width:1200px; margin:auto; padding:20px;}
+section { background:white; padding:20px; margin-bottom:25px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.15);}
+input, textarea, select { width:100%; padding:8px; margin:6px 0 12px 0;}
+button { background:#003366; color:white; border:none; padding:10px 16px; cursor:pointer;}
+.product { border-top:1px solid #ddd; padding-top:15px; margin-top:15px;}
+footer { background:#003366; color:white; text-align:center; padding:25px; margin-top:30px;}
 </style>
 </head>
-
 <body>
-
 <header>
-<h1>Oferty finansowo‑sprzedażowe</h1>
+<h1>Oferty Premium Luksusowe</h1>
 <p>Leasing • Kredyt inwestycyjny • Kredyt kupiecki</p>
 </header>
 
 <main>
-
-<section>
-<h2>Dodaj ofertę</h2>
-
-<label>Nazwa produktu</label>
-<input id="title">
-
-<label>Kategoria</label>
-<select id="category">
-<option>Elektronika</option>
-<option>Sprzęt przemysłowy</option>
-<option>Maszyny budowlane</option>
-<option>Maszyny rolnicze</option>
-<option>Narzędzia</option>
-<option>Motoryzacja</option>
-<option>Części samochodowe</option>
-<option>Energia odnawialna</option>
-<option>Automatyka przemysłowa</option>
-<option>Sprzęt medyczny</option>
-<option>Wyposażenie biura</option>
-<option>Wyposażenie sklepów</option>
-<option>Meble</option>
-<option>Oświetlenie</option>
-<option>Sprzęt sportowy</option>
-<option>Artykuły dziecięce</option>
-<option>Zabawki</option>
-<option>Odzież i akcesoria</option>
-<option>Biżuteria</option>
-<option>Torby i walizki</option>
-<option>Kosmetyki</option>
-<option>Produkty zdrowotne</option>
-<option>Artykuły gospodarstwa domowego</option>
-<option>Sprzęt AGD</option>
-<option>Produkty ogrodowe</option>
-<option>Materiały budowlane</option>
-<option>Chemia przemysłowa</option>
-<option>Surowce</option>
-<option>Materiały tekstylne</option>
-<option>Opakowania</option>
-<option>Produkty spożywcze</option>
-<option>Sprzęt gastronomiczny</option>
-<option>Systemy bezpieczeństwa</option>
-<option>Transport i logistyka</option>
-<option>Urządzenia testowe</option>
-<option>Usługi produkcyjne</option>
-</select>
-
-<label>Link do zdjęcia</label>
-<input id="image">
-
-<label>Link do video</label>
-<input id="video">
-
-<label>Opis / funkcja</label>
-<textarea id="desc"></textarea>
-
-<label>Parametry techniczne</label>
-<textarea id="params"></textarea>
-
-<label>Cena rynkowa (PLN)</label>
-<input type="number" id="price">
-
-<label>Kwota finansowania (PLN)</label>
-<input type="number" id="finance">
-
-<button onclick="addOffer()">Dodaj ofertę</button>
-</section>
-
 <section>
 <h2>Wyszukiwarka ofert</h2>
 <input id="search" placeholder="Szukaj..." onkeyup="searchOffer()">
@@ -104,20 +32,13 @@ footer { background: #003366; color: white; text-align: center; padding: 25px; m
 <h2>Filtr kategorii</h2>
 <select id="filterCategory" onchange="filterOffer()">
 <option value="all">Wszystkie</option>
-<option>Elektronika</option>
-<option>Sprzęt przemysłowy</option>
-<option>Maszyny budowlane</option>
-<option>Maszyny rolnicze</option>
-<option>Narzędzia</option>
-<option>Motoryzacja</option>
 </select>
 </section>
 
 <section>
-<h2>Oferty</h2>
+<h2>Oferty Premium</h2>
 <div id="offers"></div>
 </section>
-
 </main>
 
 <footer>
@@ -128,65 +49,94 @@ footer { background: #003366; color: white; text-align: center; padding: 25px; m
 </footer>
 
 <script>
+// 37 kategorii
+const categories = [
+"Elektronika premium","Audio hi-end","Zegarki luksusowe","Moda premium","Motoryzacja premium",
+"Sprzęt medyczny premium","Luksusowe AGD","Wyposażenie biura premium","Wyposażenie sklepów premium",
+"Meble premium","Oświetlenie premium","Sprzęt sportowy premium","Artykuły dziecięce premium",
+"Zabawki premium","Odzież i akcesoria premium","Biżuteria premium","Torby i walizki premium",
+"Kosmetyki premium","Produkty zdrowotne premium","Artykuły gospodarstwa domowego premium",
+"Sprzęt AGD premium","Produkty ogrodowe premium","Materiały budowlane premium","Chemia przemysłowa premium",
+"Surowce premium","Materiały tekstylne premium","Opakowania premium","Produkty spożywcze premium",
+"Sprzęt gastronomiczny premium","Systemy bezpieczeństwa premium","Transport i logistyka premium",
+"Urządzenia testowe premium","Usługi produkcyjne premium","Motoryzacja sportowa premium",
+"Elektronika luksusowa","Moda luksusowa","Wyposażenie hotelowe premium","Sprzęt fitness premium"
+];
+
+// dodaj do filtra
+const filterSelect = document.getElementById("filterCategory");
+categories.forEach(cat=>{
+let option = document.createElement("option");
+option.text = cat;
+option.value = cat;
+filterSelect.add(option);
+});
+
+// 5 przykładowych ofert na kategorię
 let offers=[];
+categories.forEach(cat=>{
+for(let i=1;i<=5;i++){
+let title = `${cat} Produkt ${i}`;
+let image = "https://via.placeholder.com/300x200.png?text="+encodeURIComponent(title);
+let video = "https://www.w3schools.com/html/mov_bbb.mp4";
+let desc = `Opis produktu ${i} kategorii ${cat}.`;
+let params = `Parametr1: X, Parametr2: Y, Parametr3: Z`;
+let price = (1000 + i*100);
+let finance = (price*0.5).toFixed(2);
+let wholesale = (price*0.7755).toFixed(2);
+let retail = (price*0.84).toFixed(2);
 
-function addOffer(){
-let title=document.getElementById("title").value;
-let category=document.getElementById("category").value;
-let image=document.getElementById("image").value;
-let video=document.getElementById("video").value;
-let desc=document.getElementById("desc").value;
-let params=document.getElementById("params").value;
-let price=document.getElementById("price").value;
-let finance=document.getElementById("finance").value;
+offers.push({
+title,cat,image,video,desc,params,price,finance,wholesale,retail
+});
+}
+});
 
-let wholesale=(price*0.7755).toFixed(2);
-let retail=(price*0.84).toFixed(2);
-
-let html=`
-<div class="product" data-category="${category}">
-<h3>${title}</h3>
-<p><b>Kategoria:</b> ${category}</p>
-<img src="${image}" width="300">
+// render ofert
+const offersContainer = document.getElementById("offers");
+function renderOffers(){
+offersContainer.innerHTML = "";
+offers.forEach(o=>{
+let div = document.createElement("div");
+div.className="product";
+div.setAttribute("data-category",o.cat);
+div.innerHTML = `
+<h3>${o.title}</h3>
+<p><b>Kategoria:</b> ${o.cat}</p>
+<img src="${o.image}" width="300">
 <br><br>
 <video width="300" controls>
-<source src="${video}" type="video/mp4">
+<source src="${o.video}" type="video/mp4">
 </video>
-<p><b>Opis:</b> ${desc}</p>
-<p><b>Parametry:</b> ${params}</p>
-<p><b>Finansowanie:</b> ${finance} PLN</p>
-<p><b>Cena hurtowa:</b> ${wholesale} PLN</p>
-<p><b>Cena detaliczna:</b> ${retail} PLN</p>
-</div>
+<p><b>Opis:</b> ${o.desc}</p>
+<p><b>Parametry:</b> ${o.params}</p>
+<p><b>Finansowanie:</b> ${o.finance} PLN</p>
+<p><b>Cena hurtowa:</b> ${o.wholesale} PLN</p>
+<p><b>Cena detaliczna:</b> ${o.retail} PLN</p>
 `;
-offers.push(html);
+offersContainer.appendChild(div);
+});
+}
 renderOffers();
-}
 
-function renderOffers(){
-document.getElementById("offers").innerHTML=offers.join("");
-searchOffer();
-filterOffer();
-}
-
+// wyszukiwarka
 function searchOffer(){
-let input=document.getElementById("search").value.toLowerCase();
-let products=document.getElementsByClassName("product");
+let input = document.getElementById("search").value.toLowerCase();
+let products = document.getElementsByClassName("product");
 for(let i=0;i<products.length;i++){
-let text=products[i].innerText.toLowerCase();
-products[i].style.display=text.includes(input)?"block":"none";
+let text = products[i].innerText.toLowerCase();
+products[i].style.display = text.includes(input) ? "block" : "none";
 }
 }
 
+// filtr kategorii
 function filterOffer(){
-let category=document.getElementById("filterCategory").value;
-let products=document.getElementsByClassName("product");
+let category = document.getElementById("filterCategory").value;
+let products = document.getElementsByClassName("product");
 for(let i=0;i<products.length;i++){
-let cat=products[i].getAttribute("data-category");
-if(category==="all"||cat===category)
-products[i].style.display="block";
-else
-products[i].style.display="none";
+let cat = products[i].getAttribute("data-category");
+if(category==="all"||cat===category) products[i].style.display="block";
+else products[i].style.display="none";
 }
 }
 </script>
