@@ -1,7 +1,7 @@
 /moja-strona
 │
-├─ index.html             ← główna strona startowa
-├─ style.css              ← opcjonalny styl globalny
-├─ js/                    ← folder ze skryptami (jeśli będą)
+├─ index.html                   ← strona główna
+├─ style.css                    ← globalny styl (opcjonalny)
 └─ kategorie/
-   └─ kategorie.html      ← plik z ofertami laptopów (5 modeli na producenta)
+   └─ IT/
+       └─ notebooki.html        ← plik z ofertą Premium
