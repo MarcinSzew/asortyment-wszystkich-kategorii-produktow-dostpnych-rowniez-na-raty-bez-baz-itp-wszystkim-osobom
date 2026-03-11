@@ -1,89 +1,195 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Leasing | Kredyt inwestycyjny | Kredyt kupiecki</title>
+<title>Oferty finansowo‑sprzedażowe</title>
+<meta name="description" content="Leasing, kredyt inwestycyjny i kredyt kupiecki. Sprzedaż produktów z możliwością finansowania.">
 
 <style>
-
-body{
-font-family:Arial;
-margin:0;
-background:#f2f2f2;
-}
-
-header{
-background:#003366;
-color:white;
-padding:30px;
-text-align:center;
-}
-
-main{
-max-width:1000px;
-margin:auto;
-padding:20px;
-background:white;
-}
-
-footer{
-background:#003366;
-color:white;
-padding:20px;
-text-align:center;
-margin-top:40px;
-}
-
+body { font-family: Arial; margin: 0; background: #f2f2f2; }
+header { background: #003366; color: white; padding: 30px; text-align: center; }
+main { max-width: 1100px; margin: auto; padding: 20px; }
+section { background: white; padding: 20px; margin-bottom: 25px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);}
+input, textarea, select { width: 100%; padding: 8px; margin: 6px 0 12px 0; }
+button { background: #003366; color: white; border: none; padding: 10px 16px; cursor: pointer; }
+.product { border-top: 1px solid #ddd; padding-top: 15px; margin-top: 15px; }
+footer { background: #003366; color: white; text-align: center; padding: 25px; margin-top: 30px; }
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Oferty finansowo-sprzedażowe</h1>
-
+<h1>Oferty finansowo‑sprzedażowe</h1>
 <p>Leasing • Kredyt inwestycyjny • Kredyt kupiecki</p>
-
 </header>
 
 <main>
 
-<h2>Witamy na stronie ofert finansowania</h2>
+<section>
+<h2>Dodaj ofertę</h2>
 
-<p>
-Na tej stronie znajdziesz oferty sprzedaży produktów
-z możliwością finansowania:
-</p>
+<label>Nazwa produktu</label>
+<input id="title">
 
-<ul>
-<li>leasing</li>
-<li>kredyt inwestycyjny</li>
-<li>kredyt kupiecki</li>
-</ul>
+<label>Kategoria</label>
+<select id="category">
+<option>Elektronika</option>
+<option>Sprzęt przemysłowy</option>
+<option>Maszyny budowlane</option>
+<option>Maszyny rolnicze</option>
+<option>Narzędzia</option>
+<option>Motoryzacja</option>
+<option>Części samochodowe</option>
+<option>Energia odnawialna</option>
+<option>Automatyka przemysłowa</option>
+<option>Sprzęt medyczny</option>
+<option>Wyposażenie biura</option>
+<option>Wyposażenie sklepów</option>
+<option>Meble</option>
+<option>Oświetlenie</option>
+<option>Sprzęt sportowy</option>
+<option>Artykuły dziecięce</option>
+<option>Zabawki</option>
+<option>Odzież i akcesoria</option>
+<option>Biżuteria</option>
+<option>Torby i walizki</option>
+<option>Kosmetyki</option>
+<option>Produkty zdrowotne</option>
+<option>Artykuły gospodarstwa domowego</option>
+<option>Sprzęt AGD</option>
+<option>Produkty ogrodowe</option>
+<option>Materiały budowlane</option>
+<option>Chemia przemysłowa</option>
+<option>Surowce</option>
+<option>Materiały tekstylne</option>
+<option>Opakowania</option>
+<option>Produkty spożywcze</option>
+<option>Sprzęt gastronomiczny</option>
+<option>Systemy bezpieczeństwa</option>
+<option>Transport i logistyka</option>
+<option>Urządzenia testowe</option>
+<option>Usługi produkcyjne</option>
+</select>
 
-<p>
-Strona jest w trakcie rozbudowy o katalog produktów,
-kategorie oraz oferty sprzedaży.
-</p>
+<label>Link do zdjęcia</label>
+<input id="image">
+
+<label>Link do video</label>
+<input id="video">
+
+<label>Opis / funkcja</label>
+<textarea id="desc"></textarea>
+
+<label>Parametry techniczne</label>
+<textarea id="params"></textarea>
+
+<label>Cena rynkowa (PLN)</label>
+<input type="number" id="price">
+
+<label>Kwota finansowania (PLN)</label>
+<input type="number" id="finance">
+
+<button onclick="addOffer()">Dodaj ofertę</button>
+</section>
+
+<section>
+<h2>Wyszukiwarka ofert</h2>
+<input id="search" placeholder="Szukaj..." onkeyup="searchOffer()">
+</section>
+
+<section>
+<h2>Filtr kategorii</h2>
+<select id="filterCategory" onchange="filterOffer()">
+<option value="all">Wszystkie</option>
+<option>Elektronika</option>
+<option>Sprzęt przemysłowy</option>
+<option>Maszyny budowlane</option>
+<option>Maszyny rolnicze</option>
+<option>Narzędzia</option>
+<option>Motoryzacja</option>
+</select>
+</section>
+
+<section>
+<h2>Oferty</h2>
+<div id="offers"></div>
+</section>
 
 </main>
 
 <footer>
-
-<p>Kontakt</p>
-
+<h3>Kontakt</h3>
 <p>Marcin Szewczyk</p>
-
 <p>profesja.premium@gmail.com</p>
-
 <p>+48 886 636 981</p>
-
 </footer>
+
+<script>
+let offers=[];
+
+function addOffer(){
+let title=document.getElementById("title").value;
+let category=document.getElementById("category").value;
+let image=document.getElementById("image").value;
+let video=document.getElementById("video").value;
+let desc=document.getElementById("desc").value;
+let params=document.getElementById("params").value;
+let price=document.getElementById("price").value;
+let finance=document.getElementById("finance").value;
+
+let wholesale=(price*0.7755).toFixed(2);
+let retail=(price*0.84).toFixed(2);
+
+let html=`
+<div class="product" data-category="${category}">
+<h3>${title}</h3>
+<p><b>Kategoria:</b> ${category}</p>
+<img src="${image}" width="300">
+<br><br>
+<video width="300" controls>
+<source src="${video}" type="video/mp4">
+</video>
+<p><b>Opis:</b> ${desc}</p>
+<p><b>Parametry:</b> ${params}</p>
+<p><b>Finansowanie:</b> ${finance} PLN</p>
+<p><b>Cena hurtowa:</b> ${wholesale} PLN</p>
+<p><b>Cena detaliczna:</b> ${retail} PLN</p>
+</div>
+`;
+offers.push(html);
+renderOffers();
+}
+
+function renderOffers(){
+document.getElementById("offers").innerHTML=offers.join("");
+searchOffer();
+filterOffer();
+}
+
+function searchOffer(){
+let input=document.getElementById("search").value.toLowerCase();
+let products=document.getElementsByClassName("product");
+for(let i=0;i<products.length;i++){
+let text=products[i].innerText.toLowerCase();
+products[i].style.display=text.includes(input)?"block":"none";
+}
+}
+
+function filterOffer(){
+let category=document.getElementById("filterCategory").value;
+let products=document.getElementsByClassName("product");
+for(let i=0;i<products.length;i++){
+let cat=products[i].getAttribute("data-category");
+if(category==="all"||cat===category)
+products[i].style.display="block";
+else
+products[i].style.display="none";
+}
+}
+</script>
 
 </body>
 </html>
