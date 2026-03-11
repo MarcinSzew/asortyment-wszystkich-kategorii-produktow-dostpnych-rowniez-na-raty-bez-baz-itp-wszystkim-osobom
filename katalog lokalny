@@ -1,0 +1,4 @@
+index.html                  <- Strona startowa z ofertą Premium
+/kategorie/                  <- Folder z podstronami kategorii (37 plików)
+sitemap.xml                  <- Plik do SEO
+/images/                     <- Folder na zdjęcia produktów (może być pusty na start)
