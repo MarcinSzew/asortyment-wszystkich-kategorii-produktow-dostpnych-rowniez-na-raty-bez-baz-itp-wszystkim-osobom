@@ -2,66 +2,72 @@
 <html lang="pl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="GLOBAL DROPSHIPPING - prywatna platforma B2B oferująca luksusowe produkty, indywidualne oferty finansowo-handlowe, leasing, zakupy ratalne, system zamówień i generator ofert AI.">
-<meta name="keywords" content="GLOBAL DROPSHIPPING, dropshipping, B2B, leasing, zakupy ratalne, platforma handlowa, oferty AI, faktury, zamówienia, Stripe, PayPal">
+
+<title>GLOBAL DROPSHIPPING</title>
+
+<meta name="description" content="GLOBAL DROPSHIPPING - prywatna platforma B2B oferująca luksusowe produkty technologiczne oraz usługi finansowo-handlowe i leasing uproszczony.">
+
+<meta name="keywords" content="GLOBAL DROPSHIPPING, dropshipping B2B, leasing uproszczony, zakupy ratalne">
+
 <meta name="author" content="Marcin Szewczyk">
 
-<title>GLOBAL DROPSHIPPING B2B</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <style>
+
 body{
-font-family:'Inter',sans-serif;
+font-family:Arial;
+margin:0;
 background:#05070f;
 color:white;
-margin:0;
 }
+
 header{
-text-align:center;
-padding:60px;
 background:linear-gradient(120deg,#0f1c3d,#05070f);
+padding:60px;
+text-align:center;
 }
+
 .container{
 max-width:900px;
 margin:auto;
 padding:40px;
 }
+
 form{
 background:#0c1224;
-padding:25px;
-border-radius:10px;
-margin-bottom:25px;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
 }
-input, textarea, select{
+
+input, textarea{
 width:100%;
-padding:12px;
-margin-bottom:12px;
+padding:10px;
+margin-bottom:10px;
 background:#05070f;
 border:none;
 color:white;
-border-radius:6px;
 }
+
 button{
-padding:12px 25px;
+padding:10px 20px;
 background:#4da3ff;
 border:none;
 color:white;
 cursor:pointer;
-border-radius:6px;
 }
-.panel{
-display:none;
-}
+
 .card{
 background:#0c1224;
-padding:20px;
-border-radius:8px;
+padding:15px;
 margin-bottom:10px;
+border-radius:6px;
 }
+
 </style>
 
 </head>
@@ -69,171 +75,164 @@ margin-bottom:10px;
 <body>
 
 <header>
+
 <h1>GLOBAL DROPSHIPPING</h1>
-<p>Prywatna platforma B2B z luksusowymi ofertami i finansowaniem</p>
+
+<p>Prywatna platforma finansowo-handlowa</p>
+
+<p>
+
+Właściciel projektu:  
+Marcin Szewczyk  
+ul. Piotra Bardowskiego 10/8  
+58-302 Wałbrzych  
+Dolnośląskie Polska  
+
+</p>
+
+<p>
+
+Kontakt:  
+marcin.szewczyk12557@gmail.com
+
+</p>
+
 </header>
 
 <div class="container">
 
-<h2>Rejestracja</h2>
-<form id="registerForm">
-<input id="regUser" placeholder="Login">
-<input id="regPass" type="password" placeholder="Hasło">
-<button>Zarejestruj</button>
-</form>
+<h2>Informacja o projekcie</h2>
 
-<h2>Logowanie</h2>
-<form id="loginForm">
-<input id="loginUser" placeholder="Login">
-<input id="loginPass" type="password" placeholder="Hasło">
-<button>Zaloguj</button>
-</form>
+<p>
 
-<div id="clientPanel" class="panel">
+GLOBAL DROPSHIPPING jest prywatną platformą finansowo-handlową oferującą indywidualne oferty zakupowe produktów technologicznych oraz usług finansowania zakupów takich jak leasing uproszczony lub zakupy ratalne.
+
+</p>
+
 <h2>Panel klienta B2B</h2>
 
-<form id="rfqForm">
+<form id="offerForm">
+
 <input id="producer" placeholder="Producent">
-<input id="model" placeholder="Model">
+
+<input id="model" placeholder="Model produktu">
+
 <input id="quantity" placeholder="Ilość">
-<input id="price" placeholder="Cena oczekiwana">
-<textarea id="notes" placeholder="Dodatkowe uwagi"></textarea>
-<button>Wyślij zapytanie</button>
+
+<input id="price" placeholder="Oczekiwana cena">
+
+<textarea id="notes" placeholder="Uwagi"></textarea>
+
+<button>Wyślij zapytanie ofertowe</button>
+
 </form>
 
-<h3>Twoje zapytania</h3>
-<div id="clientRequests"></div>
+<h3>Zapytania</h3>
 
-<h3>Generator oferty AI</h3>
-<textarea id="description" placeholder="Opis zapotrzebowania klienta"></textarea>
-<button onclick="generateOffer()">Generuj ofertę AI</button>
-<div id="aiOffer"></div>
-</div>
+<div id="requests"></div>
 
-<div id="adminPanel" class="panel">
-<h2>Panel administratora</h2>
+<h2>Generator ofert AI</h2>
 
-<h3>Użytkownicy</h3>
-<div id="usersList"></div>
+<textarea id="aiText" placeholder="Opis zapotrzebowania"></textarea>
 
-<h3>Zapytania klientów</h3>
-<div id="allRequests"></div>
-</div>
+<button onclick="generateAI()">Generuj ofertę</button>
+
+<div id="aiResult"></div>
 
 </div>
 
 <script>
-let users=JSON.parse(localStorage.getItem("users"))||[];
+
 let requests=JSON.parse(localStorage.getItem("requests"))||[];
-let currentUser=null;
 
-document.getElementById("registerForm").addEventListener("submit",e=>{
-e.preventDefault();
-let user={login:regUser.value,pass:regPass.value};
-users.push(user);
-localStorage.setItem("users",JSON.stringify(users));
-alert("Konto utworzone");
+function render(){
+
+let html="";
+
+requests.forEach(r=>{
+
+html+=`
+
+<div class="card">
+
+Producent: ${r.producer}<br>
+Model: ${r.model}<br>
+Ilość: ${r.quantity}<br>
+Cena: ${r.price}<br>
+Uwagi: ${r.notes}
+
+</div>
+
+`;
+
 });
 
-document.getElementById("loginForm").addEventListener("submit",e=>{
-e.preventDefault();
-let login=loginUser.value;
-let pass=loginPass.value;
-if(login==="admin" && pass==="admin"){
-adminPanel.style.display="block";
-renderAdmin();
-return;
-}
-let found=users.find(u=>u.login===login && u.pass===pass);
-if(found){
-currentUser=login;
-clientPanel.style.display="block";
-renderClient();
-}else{
-alert("Nieprawidłowe dane");
-}
-});
+document.getElementById("requests").innerHTML=html;
 
-document.getElementById("rfqForm").addEventListener("submit",e=>{
+}
+
+document.getElementById("offerForm").addEventListener("submit",function(e){
+
 e.preventDefault();
+
 let r={
-user:currentUser,
+
 producer:producer.value,
 model:model.value,
 quantity:quantity.value,
 price:price.value,
 notes:notes.value
+
 };
+
 requests.push(r);
+
 localStorage.setItem("requests",JSON.stringify(requests));
-renderClient();
+
+render();
+
 });
 
-function renderClient(){
-let html="";
-requests.filter(r=>r.user===currentUser).forEach((r,i)=>{
-html+=`
-<div class="card">
-Producent: ${r.producer}<br>
-Model: ${r.model}<br>
-Ilość: ${r.quantity}<br>
-Cena: ${r.price}<br>
-Uwagi: ${r.notes}
-<br><br>
-<button onclick="generatePDF(${i})">Pobierz PDF</button>
-</div>
-`;
-});
-clientRequests.innerHTML=html;
-}
+render();
 
-function renderAdmin(){
-let usersHTML="";
-users.forEach(u=>{
-usersHTML+=`<div class="card">${u.login}</div>`;
-});
-usersList.innerHTML=usersHTML;
-let reqHTML="";
-requests.forEach(r=>{
-reqHTML+=`
-<div class="card">
-Użytkownik: ${r.user}<br>
-Producent: ${r.producer}<br>
-Model: ${r.model}<br>
-Ilość: ${r.quantity}<br>
-Cena: ${r.price}<br>
-Uwagi: ${r.notes}
-</div>
-`;
-});
-allRequests.innerHTML=reqHTML;
-}
+function generateAI(){
 
-function generatePDF(i){
-const { jsPDF } = window.jspdf;
-let r=requests[i];
-let doc=new jsPDF();
-doc.text("GLOBAL DROPSHIPPING",20,20);
-doc.text("Oferta handlowa",20,40);
-doc.text("Producent: "+r.producer,20,60);
-doc.text("Model: "+r.model,20,70);
-doc.text("Ilość: "+r.quantity,20,80);
-doc.text("Cena: "+r.price,20,90);
-doc.text("Uwagi: "+r.notes,20,100);
-doc.save("oferta.pdf");
-}
+let text=document.getElementById("aiText").value;
 
-// AI generujące ofertę
-function generateOffer(){
-let text=description.value;
 let offer=
-"GLOBAL DROPSHIPPING - propozycja oferty AI:\n\n"+
-"Opis: "+text+"\n"+
-"Finansowanie: leasing uproszczony lub zakupy ratalne\n"+
-"Możliwe korekty parametrów produktu, nazwy marki, modelu oraz ceny.\n"+
-"Można dodać zdjęcia lub video w ofercie finalnej.";
-aiOffer.innerText=offer;
+
+"Propozycja oferty GLOBAL DROPSHIPPING:\n\n"+
+
+"Opis zapotrzebowania: "+text+"\n\n"+
+
+"Możliwe finansowanie:\n"+
+"- leasing uproszczony\n"+
+"- zakupy ratalne\n\n"+
+
+"Parametry produktu mogą zostać dostosowane do oczekiwań klienta.";
+
+document.getElementById("aiResult").innerText=offer;
+
 }
+
+</script>
+
+<script type="application/ld+json">
+
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "GLOBAL DROPSHIPPING",
+ "founder": "Marcin Szewczyk",
+ "email": "marcin.szewczyk12557@gmail.com",
+ "address": {
+   "@type": "PostalAddress",
+   "streetAddress": "ul. Piotra Bardowskiego 10/8",
+   "addressLocality": "Wałbrzych",
+   "addressCountry": "PL"
+ }
+}
+
 </script>
 
 </body>
