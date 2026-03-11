@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="pl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -24,7 +25,7 @@ padding:20px;
 
 nav a{
 color:white;
-margin-right:15px;
+margin-right:20px;
 text-decoration:none;
 font-weight:bold;
 }
@@ -63,15 +64,14 @@ background:#1a3e5c;
 color:white;
 border:none;
 padding:10px;
-margin-top:10px;
 cursor:pointer;
 }
 
 footer{
 background:#0f2942;
 color:white;
-padding:30px;
 text-align:center;
+padding:30px;
 }
 
 </style>
@@ -82,9 +82,7 @@ function rata(){
 
 let cena=prompt("Podaj cenę produktu")
 
-let raty=12
-
-let wynik=(cena/raty).toFixed(2)
+let wynik=(cena/12).toFixed(2)
 
 alert("Przybliżona rata miesięczna: "+wynik+" zł")
 
@@ -104,7 +102,9 @@ alert("Przybliżona rata miesięczna: "+wynik+" zł")
 
 <a href="index.html">Strona główna</a>
 
-<a href="kategorie.html">Kategorie produktów</a>
+<a href="smartfony.html">Smartfony</a>
+
+<a href="sprzet-it.html">Sprzęt IT</a>
 
 </nav>
 
@@ -112,25 +112,23 @@ alert("Przybliżona rata miesięczna: "+wynik+" zł")
 
 <section class="hero">
 
-<h2>Oferta PREMIUM sprzętu IT</h2>
+<h2>Oferta PREMIUM sprzętu technologicznego</h2>
 
-<p>Laptopy • Stacje robocze • Smartfony gamingowe • Elektronika użytkowa</p>
+<p>Smartfony • Laptopy • Stacje robocze • Komputery</p>
 
 </section>
 
 <section class="section">
 
-<h2>Wybrane oferty Premium</h2>
+<h2>Wybrane produkty Premium</h2>
 
 <div class="products">
 
 <div class="product">
 
-<h3>Nubia Redmagic Gaming</h3>
+<h3>Nubia Redmagic</h3>
 
-<p>Snapdragon 8 Elite</p>
-
-<p>16-24GB RAM</p>
+<p>Gamingowy smartfon</p>
 
 <p class="price">Cena: edytuj</p>
 
@@ -140,11 +138,9 @@ alert("Przybliżona rata miesięczna: "+wynik+" zł")
 
 <div class="product">
 
-<h3>Laptop Lenovo ThinkPad</h3>
+<h3>Lenovo ThinkPad</h3>
 
-<p>Intel Core i9</p>
-
-<p>32GB RAM</p>
+<p>Laptop biznesowy</p>
 
 <p class="price">Cena: edytuj</p>
 
@@ -154,11 +150,9 @@ alert("Przybliżona rata miesięczna: "+wynik+" zł")
 
 <div class="product">
 
-<h3>Dell Precision Workstation</h3>
+<h3>Dell Precision</h3>
 
-<p>Profesjonalna stacja robocza</p>
-
-<p>64GB RAM</p>
+<p>Mobilna stacja robocza</p>
 
 <p class="price">Cena: edytuj</p>
 
@@ -197,17 +191,15 @@ Marcin Szewczyk
 
 </p>
 
-<h3>Zapytanie ofertowe</h3>
-
 <form>
 
-<input type="text" placeholder="Imię" required><br><br>
+<input type="text" placeholder="Imię"><br><br>
 
-<input type="email" placeholder="Email" required><br><br>
+<input type="email" placeholder="Email"><br><br>
 
 <textarea placeholder="Treść zapytania"></textarea><br><br>
 
-<button type="submit">Wyślij</button>
+<button type="submit">Wyślij zapytanie</button>
 
 </form>
 
