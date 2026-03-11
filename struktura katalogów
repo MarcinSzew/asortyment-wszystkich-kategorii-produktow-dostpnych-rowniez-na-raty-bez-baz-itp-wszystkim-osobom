@@ -1,14 +1,12 @@
-repozytorium/
-├─ index.html
-├─ sitemap.xml
-├─ images/
-│   └─ placeholder.jpg
-├─ kategorie/
-│   ├─ 01-smartfony.html
-│   ├─ 02-laptopy.html
-│   ├─ 03-stacje-robocze.html
-│   ├─ 04-komputery-all-in-one.html
-│   ├─ 05-komputery-stacjonarne.html
-│   ├─ 06-monitory.html
-│   ├─ 07-akcesoria-komputerowe.html
-│   ├─ ... (kolejne kategorie do 37)
+/index.html                  <-- Strona główna z ofertą Premium
+/sitemap.xml                 <-- Sitemap dla wyszukiwarek
+/kategorie/                  <-- Folder na podstrony kategorii
+    01-smartfony.html
+    02-laptopy.html
+    ...
+    37-akcesoria.html
+/images/                      <-- Folder na zdjęcia produktów i placeholdery
+/css/
+    style.css                 <-- Opcjonalny osobny plik CSS
+/js/
+    main.js                   <-- Skrypty np. kalkulator rat
